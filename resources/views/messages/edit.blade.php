@@ -1,17 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>id: {{ $message->id }} のメッセージ編集ページ!</h1>
+    <h1>Edit for id: {{ $message->id }}</h1>
     
-    {!! Form::model($message, ['route' => ['messages.update', $message->id], 'method' => 'put']) !!}
-        {!! Form::label('title', 'Title') !!}
-        {!! Form::text('title') !!}
-
-        {!! Form::label('content', 'Message') !!}
-        {!! Form::text('content') !!}
-
-        {!! Form::submit('Update') !!}
-
-    {!! Form::close() !!}
-
+    <div class="row">
+        <div class="col-xs-6">
+            {!! Form::model($message, ['route' => ['messages.update', $message->id], 'method' => 'put']) !!}
+                {!! Form::label('title', 'Title') !!}
+                {!! Form::text('title', null, ['class' => 'form-control']) !!}
+        
+                {!! Form::label('content', 'Message') !!}
+                {!! Form::text('content', null, ['class' => 'form-control']) !!}
+        
+                {!! Form::submit('Update', ['class' => 'btn btn-danger']) !!}
+        
+            {!! Form::close() !!}
+        </div>
+    </div>
 @endsection

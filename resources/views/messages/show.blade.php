@@ -1,14 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>id = {{ $message->id }} のメッセージ詳細ページ</h1>
+    <h1>Message Details</h1>
+    <table class="table table-bordered">
+        <tr>
+            <th>id</th>
+            <th>{{ $message->id }}</th>
+        </tr>
+        <tr>
+            <th>title</th>
+            <td>{{ $message->title }}</td>
+        </tr>
+        <tr>
+            <th>message</th>
+            <td>{{ $message->content }}</td>
+        </tr>
+    </table>
 
-    <p>Title: {{$message->title}}</p>
-    <p>Message: {{ $message->content }}</p>
-
-    {!! link_to_route('messages.edit', 'このメッセージを編集', ['id' => $message->id]) !!}
+    {!! link_to_route('messages.edit', 'Edit', ['id' => $message->id], ['class' => 'btn btn-default']) !!}
     
     {!! Form::model($message, ['route' => ['messages.destroy', $message->id], 'method' => 'delete']) !!}
-        {!! Form::submit('削除') !!}
+        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
 @endsection
